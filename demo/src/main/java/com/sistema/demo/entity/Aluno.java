@@ -11,11 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 @Entity
 @Table(name = "so_aluno")
 public class Aluno {
@@ -25,6 +20,9 @@ public class Aluno {
 	private int id;
 
 	private String nome;
+
+	@OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Nota> listNota;
 
 	public int getId() {
 		return id;
@@ -41,8 +39,13 @@ public class Aluno {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	@OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Nota> listNota;
+
+	public List<Nota> getListNota() {
+		return listNota;
+	}
+
+	public void setListNota(List<Nota> listNota) {
+		this.listNota = listNota;
+	}
 
 }
