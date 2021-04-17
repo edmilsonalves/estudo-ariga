@@ -52,13 +52,25 @@ public class AlunoController {
 
 	}
 
+	@GetMapping("/aprovado")
+	public ResponseEntity<?> listByAprovado() {
+
+		List<AlunoDto> listAluno = this.alunoService.listByAprovado();
+		if (listAluno == null || listAluno.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		}
+
+		return ResponseEntity.ok(listAluno);
+
+	}
+
 	@PostMapping
 	public ResponseEntity<?> salvar(@RequestBody final AlunoDto request) {
 
 		try {
 
 			this.alunoService.salvar(request);
-			
+
 		} catch (BusinessException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
