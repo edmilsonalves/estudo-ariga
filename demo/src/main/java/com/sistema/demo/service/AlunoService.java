@@ -37,6 +37,10 @@ public class AlunoService {
 		return listAlunoResponse;
 	}
 
+	public List<AlunoDto> listByAprovado() {
+		return null;
+	}
+
 	public void salvar(final AlunoDto alunoDto) throws BusinessException {
 
 		if (alunoDto.getNome() == null) {
@@ -46,14 +50,16 @@ public class AlunoService {
 		Aluno aluno = new Aluno();
 		aluno.setNome(alunoDto.getNome());
 		aluno.setListNota(new ArrayList<>(0));
-
+		
 		for (NotaDto notaDto : alunoDto.getListNota()) {
 			Nota nota = new Nota();
 			nota.setAluno(aluno);
 			nota.setNota(notaDto.getNota());
 			nota.setSemestre(notaDto.getSemestre());
-
+			
+			
 			aluno.getListNota().add(nota);
+			
 		}
 
 		this.alunoRepository.save(aluno);
@@ -67,15 +73,19 @@ public class AlunoService {
 				AlunoDto dto = new AlunoDto();
 				dto.setId(aluno.getId());
 				dto.setNome(aluno.getNome());
-
+				
 				for (Nota nota : aluno.getListNota()) {
 					NotaDto notaDto = new NotaDto();
 					notaDto.setSemestre(nota.getSemestre());
 					notaDto.setNota(nota.getNota());
+					
 					if (dto.getListNota() == null) {
 						dto.setListNota(new ArrayList<>(0));
 					}
+					
 					dto.getListNota().add(notaDto);
+					
+					
 				}
 
 				list.add(dto);
