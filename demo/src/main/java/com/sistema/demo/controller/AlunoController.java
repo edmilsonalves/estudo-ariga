@@ -23,6 +23,11 @@ public class AlunoController {
 	@Autowired
 	private AlunoService alunoService;
 
+	/**
+	 * Consultar todos os alunos
+	 * 
+	 * @return
+	 */
 	@GetMapping
 	public ResponseEntity<?> findAll() {
 
