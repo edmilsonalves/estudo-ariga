@@ -63,6 +63,19 @@ public class AlunoController {
 		return ResponseEntity.ok(listAluno);
 
 	}
+	
+	@GetMapping("/reprovado")
+	public ResponseEntity<?> listByReprovado() {
+
+		List<AlunoDto> listAluno = this.alunoService.listByReprovado();
+		if (listAluno == null || listAluno.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		}
+
+		return ResponseEntity.ok(listAluno);
+
+	}
+
 
 	@PostMapping
 	public ResponseEntity<?> salvar(@RequestBody final AlunoDto request) {

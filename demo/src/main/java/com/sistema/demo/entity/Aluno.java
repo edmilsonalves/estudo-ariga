@@ -20,6 +20,8 @@ public class Aluno {
 	private int id;
 
 	private String nome;
+	
+	private Double media;
 
 	@OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Nota> listNota;
@@ -46,6 +48,14 @@ public class Aluno {
 
 	public void setListNota(List<Nota> listNota) {
 		this.listNota = listNota;
+	}
+
+	public Double getMedia() {
+		return media;
+	}
+
+	public void setMedia(Double media) {
+		this.media = media;
 	}
 
 }
