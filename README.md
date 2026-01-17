@@ -1,2 +1,0 @@
-# estudo-ariga
-Estudos ariga
